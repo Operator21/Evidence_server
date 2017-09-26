@@ -8,7 +8,12 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <ListView x:Name="People_list">
-            
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Jméno" Width="150" DisplayMemberBinding="{Binding name}" />
+                    <GridViewColumn Header="Příjmení" Width="200" DisplayMemberBinding="{Binding surname}" />
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 </Window>
