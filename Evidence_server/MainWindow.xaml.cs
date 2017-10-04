@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -30,16 +31,36 @@ namespace Evidence_server
         {
             InitializeComponent();
             //users.Add(new User() { name = "rnd", surname = "sur", birth = DateTime.Today, birth_num = rnd.Next(11111,99999).ToString(), gender = "male" });
-            Getusers();
-            People_list.ItemsSource = users;
+            Getusers();   
         }
         private async Task Getusers()
         {
-            var ip = await httpClient.GetStringAsync("https://student.sps-prosek.cz/~zdychst14/connection/script.php");
-            Debug.WriteLine(ip);
+            string url = "https://student.sps-prosek.cz/~zdychst14/connection/script.php";
+            var client = new RestClient(url);
+            // client.Authenticator = new HttpBasicAuthenticator(username, password);
+
+            var request = new RestRequest("resource/{id}", Method.POST);
+            // request.AddParameter("error", "1"); // adds to POST or URL querystring based on Method
+            //request.AddUrlSegment("id", "123"); // replaces matching token in request.Resource
+
+            request.AddHeader("header", "value");
+
+            IRestResponse response = client.Execute(request);
+
             IParser parser = new JsonParser();
-            i = await parser.ParseString<User>(ip);
-            Debug.WriteLine(i.name);
+            People_list.ItemsSource = await parser.ParseString<List<User>>(response.Content);
+        }
+
+        private void Add_btn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch
+            {
+                MessageBox.Show("Vyskytla se chyba");
+            }
         }
     }
 }

@@ -6,14 +6,19 @@
         xmlns:local="clr-namespace:Evidence_server"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <ListView x:Name="People_list">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Jméno" Width="150" DisplayMemberBinding="{Binding name}" />
-                    <GridViewColumn Header="Příjmení" Width="200" DisplayMemberBinding="{Binding surname}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </Grid>
+    <StackPanel>
+        <Button x:Name="Add_btn" Click="Add_btn_Click">Přidat</Button>
+        <Grid>
+            <ListView x:Name="People_list">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Jméno" Width="150" DisplayMemberBinding="{Binding name}" />
+                        <GridViewColumn Header="Příjmení" Width="200" DisplayMemberBinding="{Binding surname}" />
+                        <GridViewColumn Header="Pohlaví" Width="200" DisplayMemberBinding="{Binding gender}" />
+                        <GridViewColumn Header="Pohlaví" Width="200" DisplayMemberBinding="{Binding birth}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </StackPanel>
 </Window>
