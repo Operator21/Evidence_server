@@ -1,0 +1,30 @@
+﻿<Page x:Class="Evidence_server.NewUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Evidence_server"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="NewUser">
+    <ScrollViewer Margin="0,0,0,-81">
+        <Grid>
+            <StackPanel>
+                <Label>Name</Label>
+                <TextBox x:Name="name" TextChanged="name_TextChanged"></TextBox>
+                <Label>Surname</Label>
+                <TextBox x:Name="surname"></TextBox>
+                <Label>Birth number</Label>
+                <TextBox x:Name="birth_num"></TextBox>
+                <Label>Date of birth</Label>
+                <Calendar x:Name="birth"></Calendar>
+                <ComboBox x:Name="select" SelectedValuePath="Content">
+                    <ComboBoxItem IsEnabled="False" IsSelected="True">Gender</ComboBoxItem>
+                    <ComboBoxItem>Male</ComboBoxItem>
+                    <ComboBoxItem>Female</ComboBoxItem>
+                </ComboBox>
+                <Button x:Name="Submit" Click="Submit_Click">Create user</Button>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

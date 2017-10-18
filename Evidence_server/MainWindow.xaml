@@ -5,20 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Evidence_server"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="525">
     <StackPanel>
         <Button x:Name="Add_btn" Click="Add_btn_Click">Přidat</Button>
-        <Grid>
-            <ListView x:Name="People_list">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Jméno" Width="150" DisplayMemberBinding="{Binding name}" />
-                        <GridViewColumn Header="Příjmení" Width="200" DisplayMemberBinding="{Binding surname}" />
-                        <GridViewColumn Header="Pohlaví" Width="200" DisplayMemberBinding="{Binding gender}" />
-                        <GridViewColumn Header="Pohlaví" Width="200" DisplayMemberBinding="{Binding birth}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden">
+
+        </Frame>
     </StackPanel>
 </Window>
