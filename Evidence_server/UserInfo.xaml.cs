@@ -24,7 +24,6 @@ namespace Evidence_server
     {
         FrontControl fc;
         User u;
-        List<User> users = new List<User>();
         int ID;
         public UserInfo(FrontControl f, int id)
         {
@@ -34,18 +33,38 @@ namespace Evidence_server
             GetUser();
             name.Content = u.name + " " + u.surname;
             gender.Content = u.gender;
-            birth.Content = u.birth;
+            birth.Content = u.birth.ToString("dd.MM. yyyy");
             birth_num.Content = u.birth_num;
         }
         private void GetUser()
         {
             var client = new RestClient("https://student.sps-prosek.cz/~zdychst14/connection/script.php?ID=" + ID);
             var request = new RestRequest(Method.GET);
-            request.AddHeader("postman-token", "831baaf3-6305-6de2-22ea-daee8334e754");
             request.AddHeader("cache-control", "no-cache");
             IRestResponse response = client.Execute(request);
             IParser parser = new JsonParser();
-            var u = JsonConvert.DeserializeObject<User>(response.Content);
+            string result = response.Content.Replace(@"[", "");
+            result = result.Replace(@"]", "");
+            u = JsonConvert.DeserializeObject<User>(result);
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            fc.frame.Navigate(new UserList(fc));
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            fc.frame.Navigate(new NewUser(fc,u));
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            var client = new RestClient("https://student.sps-prosek.cz/~zdychst14/connection/delete.php?ID=" + ID);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            IRestResponse response = client.Execute(request);
+            fc.frame.Navigate(new UserList(fc));
         }
     }
 }

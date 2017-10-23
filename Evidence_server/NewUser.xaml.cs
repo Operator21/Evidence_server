@@ -22,28 +22,52 @@ namespace Evidence_server
     public partial class NewUser : Page
     {
         FrontControl fc;
+        User u;
+        bool edit;
+        string url;
         public NewUser(FrontControl f)
         {
             InitializeComponent();
             fc = f;
         }
+        public NewUser(FrontControl f, User us)
+        {
+            InitializeComponent();
+            fc = f;
+            u = us;
+            edit = true;
+            name.Text = u.name;
+            surname.Text = u.surname;
+            birth_num.Text = u.birth_num;
+            birth.DisplayDate = u.birth;
+            select.SelectedValue = u.gender;
+        }
         private void Create()
         {
             try
             {
-                User u = new User();
-                u.name = name.Text;
-                u.surname = surname.Text;
-                u.birth = birth.DisplayDate;
-                u.birth_num = birth_num.Text;
-                u.gender = select.SelectedValue.ToString();
-
-                var client = new RestClient("https://student.sps-prosek.cz/~zdychst14/connection/insert.php");
+                User uc = new User();
+                
+                uc.name = name.Text;
+                uc.surname = surname.Text;
+                uc.birth = birth.DisplayDate;
+                uc.birth_num = birth_num.Text;
+                uc.gender = select.SelectedValue.ToString();
+                if (edit)
+                {
+                    url = "https://student.sps-prosek.cz/~zdychst14/connection/insert.php?ID=" + u.ID;
+                    MessageBox.Show(url);
+                }
+                else
+                {
+                    url = "https://student.sps-prosek.cz/~zdychst14/connection/insert.php";
+                }
+                var client = new RestClient(url);
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("postman-token", "39c36bd1-61b5-1361-11f2-70f50d01c83c");
                 request.AddHeader("cache-control", "no-cache");
                 request.AddHeader("content-type", "application/json");
-                request.AddParameter("application/json", Newtonsoft.Json.JsonConvert.SerializeObject(u), ParameterType.RequestBody);
+                request.AddParameter("application/json", Newtonsoft.Json.JsonConvert.SerializeObject(uc), ParameterType.RequestBody);
                 IRestResponse response = client.Execute(request);
             }
             catch
@@ -53,13 +77,28 @@ namespace Evidence_server
         }
         private void name_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Submit.Content = "Create user " + name.Text; 
+            if (edit)
+            {
+                Submit.Content = "Edit user " + name.Text;
+            }
+            else
+            {
+                Submit.Content = "Create user " + name.Text;
+            }       
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             Create();
-            fc.frame.Navigate(new UserList(fc));
+            if (edit)
+            {
+                fc.frame.Navigate(new UserInfo(fc,u.ID));
+            }
+            else
+            {
+                fc.frame.Navigate(new UserList(fc));
+            }
+            
         }
     }
         

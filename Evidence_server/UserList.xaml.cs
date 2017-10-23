@@ -42,7 +42,6 @@ namespace Evidence_server
             var request = new RestRequest(Method.GET);
             request.AddHeader("postman-token", "831baaf3-6305-6de2-22ea-daee8334e754");
             request.AddHeader("cache-control", "no-cache");
-            request.AddParameter("undefined", "{\"name\": \"Bramboradsjkfh\",\"surname\": \"Prijmenifdrgfddgf1\"}", ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
             IParser parser = new JsonParser();
             People_list.ItemsSource = await parser.ParseString<List<User>>(response.Content);
@@ -51,7 +50,7 @@ namespace Evidence_server
         private void People_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int id = ((User)People_list.SelectedItem).ID;
-            MessageBox.Show(id.ToString());
+            //MessageBox.Show(id.ToString());
             fc.frame.Navigate(new UserInfo(fc,id));
         }
     }

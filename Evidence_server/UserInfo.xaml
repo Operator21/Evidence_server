@@ -9,6 +9,9 @@
       Title="UserInfo">
 
     <StackPanel>
+        <Button x:Name="Back" Click="Back_Click">Back</Button>
+        <Button x:Name="Edit" Click="Edit_Click">Edit</Button>
+        <Button x:Name="Delete" Click="Delete_Click">Delete</Button>
         <Label x:Name="name"></Label>
         <Label x:Name="gender"></Label>
         <Label x:Name="birth_num"></Label>
