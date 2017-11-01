@@ -60,7 +60,6 @@ namespace Evidence_server
                 }
                 var client = new RestClient(url);
                 var request = new RestRequest(Method.POST);
-                request.AddHeader("postman-token", "39c36bd1-61b5-1361-11f2-70f50d01c83c");
                 request.AddHeader("cache-control", "no-cache");
                 request.AddHeader("content-type", "application/json");
                 request.AddParameter("application/json", Newtonsoft.Json.JsonConvert.SerializeObject(uc), ParameterType.RequestBody);

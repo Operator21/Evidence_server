@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using MahApps.Metro.Controls;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,20 +22,13 @@ namespace Evidence_server
     /// <summary>
     /// Interakční logika pro MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
             InitializeComponent();
             BackEnd.frame = frame;
             BackEnd.frame.Navigate(new UserList());
-        }
-        
-
-        private void Add_btn_Click(object sender, RoutedEventArgs e)
-        {
-            //frame.Navigate(new NewUser(fc));
-            BackEnd.frame.Navigate(new NewUser());
         }
     }
 }

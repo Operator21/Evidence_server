@@ -4,17 +4,40 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Evidence_server"
+      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="UserInfo">
 
     <StackPanel>
-        <Button x:Name="Back" Click="Back_Click">Back</Button>
-        <Button x:Name="Edit" Click="Edit_Click">Edit</Button>
-        <Button x:Name="Delete" Click="Delete_Click">Delete</Button>
-        <Label x:Name="name"></Label>
-        <Label x:Name="gender"></Label>
-        <Label x:Name="birth_num"></Label>
-        <Label x:Name="birth"></Label>
+        <Button x:Name="Back" Click="Back_Click" DockPanel.Dock="Top">
+                <iconPacks:PackIconMaterial Kind="KeyboardReturn" />
+            </Button>
+            <Button x:Name="Edit" Click="Edit_Click">
+                <iconPacks:PackIconMaterial Kind="AccountEdit"/>
+            </Button>
+        <Button x:Name="Delete" Click="Delete_Click">
+            <iconPacks:PackIconMaterial Kind="Delete" />
+        </Button>
+        <Grid Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label>Name</Label>
+            <Label Grid.Column="0" Grid.Row="1">Gender</Label>
+            <Label Grid.Column="0" Grid.Row="2">Birth number</Label>
+            <Label Grid.Column="0" Grid.Row="3">Born</Label>
+            <Label x:Name="name" Grid.Column="1" Grid.Row="0"></Label>
+            <Label x:Name="gender" Grid.Column="1" Grid.Row="1"></Label>
+            <Label x:Name="birth_num" Grid.Column="1" Grid.Row="2"></Label>
+            <Label x:Name="birth" Grid.Column="1" Grid.Row="3"></Label>
+        </Grid>
     </StackPanel>
 </Page>

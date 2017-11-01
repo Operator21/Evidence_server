@@ -51,5 +51,10 @@ namespace Evidence_server
             //MessageBox.Show(id.ToString());
             BackEnd.frame.Navigate(new UserInfo(id));
         }
+        private void Add_btn_Click(object sender, RoutedEventArgs e)
+        {
+            //frame.Navigate(new NewUser(fc));
+            BackEnd.frame.Navigate(new NewUser());
+        }
     }
 }
