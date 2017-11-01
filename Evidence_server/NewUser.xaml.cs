@@ -21,19 +21,16 @@ namespace Evidence_server
     /// </summary>
     public partial class NewUser : Page
     {
-        FrontControl fc;
         User u;
         bool edit;
         string url;
-        public NewUser(FrontControl f)
+        public NewUser()
         {
             InitializeComponent();
-            fc = f;
         }
-        public NewUser(FrontControl f, User us)
+        public NewUser(User us)
         {
             InitializeComponent();
-            fc = f;
             u = us;
             edit = true;
             name.Text = u.name;
@@ -47,7 +44,6 @@ namespace Evidence_server
             try
             {
                 User uc = new User();
-                
                 uc.name = name.Text;
                 uc.surname = surname.Text;
                 uc.birth = birth.DisplayDate;
@@ -92,13 +88,25 @@ namespace Evidence_server
             Create();
             if (edit)
             {
-                fc.frame.Navigate(new UserInfo(fc,u.ID));
+                BackEnd.frame.Navigate(new UserInfo(u.ID));
             }
             else
             {
-                fc.frame.Navigate(new UserList(fc));
+                BackEnd.frame.Navigate(new UserList());
             }
             
+        }
+
+        private void back_btn_Click(object sender, RoutedEventArgs e)
+        {
+            if (edit)
+            {
+                BackEnd.frame.Navigate(new UserInfo(u.ID));
+            }
+            else
+            {
+                BackEnd.frame.Navigate(new UserList());
+            }
         }
     }
         

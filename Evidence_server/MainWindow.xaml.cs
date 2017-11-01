@@ -23,18 +23,18 @@ namespace Evidence_server
     /// </summary>
     public partial class MainWindow : Window
     {
-        FrontControl fc = new FrontControl();
         public MainWindow()
         {
             InitializeComponent();
-            fc.frame = frame;
-            frame.Navigate(new UserList(fc));
+            BackEnd.frame = frame;
+            BackEnd.frame.Navigate(new UserList());
         }
         
 
         private void Add_btn_Click(object sender, RoutedEventArgs e)
         {
-            frame.Navigate(new NewUser(fc));
+            //frame.Navigate(new NewUser(fc));
+            BackEnd.frame.Navigate(new NewUser());
         }
     }
 }

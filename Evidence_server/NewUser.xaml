@@ -7,24 +7,23 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="NewUser">
-    <ScrollViewer Margin="0,0,0,-81">
-        <Grid>
-            <StackPanel>
-                <Label>Name</Label>
-                <TextBox x:Name="name" TextChanged="name_TextChanged"></TextBox>
-                <Label>Surname</Label>
-                <TextBox x:Name="surname"></TextBox>
-                <Label>Birth number</Label>
-                <TextBox x:Name="birth_num"></TextBox>
-                <Label>Date of birth</Label>
-                <Calendar x:Name="birth"></Calendar>
-                <ComboBox x:Name="select" SelectedValuePath="Content">
-                    <ComboBoxItem IsEnabled="False" IsSelected="True">Gender</ComboBoxItem>
-                    <ComboBoxItem>Male</ComboBoxItem>
-                    <ComboBoxItem>Female</ComboBoxItem>
-                </ComboBox>
-                <Button x:Name="Submit" Click="Submit_Click">Create user</Button>
-            </StackPanel>
-        </Grid>
-    </ScrollViewer>
+    <Grid>
+        <StackPanel>
+            <Button x:Name="back_btn" Click="back_btn_Click">Back</Button>
+            <Label>Name</Label>
+            <TextBox x:Name="name" TextChanged="name_TextChanged"></TextBox>
+            <Label>Surname</Label>
+            <TextBox x:Name="surname"></TextBox>
+            <Label>Birth number</Label>
+            <TextBox x:Name="birth_num"></TextBox>
+            <Label>Date of birth</Label>
+            <Calendar x:Name="birth"></Calendar>
+            <ComboBox x:Name="select" SelectedValuePath="Content">
+                <ComboBoxItem IsEnabled="False" IsSelected="True">Gender</ComboBoxItem>
+                <ComboBoxItem>Male</ComboBoxItem>
+                <ComboBoxItem>Female</ComboBoxItem>
+            </ComboBox>
+            <Button x:Name="Submit" Click="Submit_Click">Create user</Button>
+        </StackPanel>
+    </Grid>
 </Page>

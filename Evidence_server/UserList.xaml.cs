@@ -22,11 +22,9 @@ namespace Evidence_server
     /// </summary>
     public partial class UserList : Page
     {
-        FrontControl fc;
-        public UserList(FrontControl f)
+        public UserList()
         {
             InitializeComponent();
-            fc = f;
             try
             {
                 Getusers();
@@ -51,7 +49,7 @@ namespace Evidence_server
         {
             int id = ((User)People_list.SelectedItem).ID;
             //MessageBox.Show(id.ToString());
-            fc.frame.Navigate(new UserInfo(fc,id));
+            BackEnd.frame.Navigate(new UserInfo(id));
         }
     }
 }

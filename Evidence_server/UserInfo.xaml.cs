@@ -22,13 +22,11 @@ namespace Evidence_server
     /// </summary>
     public partial class UserInfo : Page
     {
-        FrontControl fc;
         User u;
         int ID;
-        public UserInfo(FrontControl f, int id)
+        public UserInfo(int id)
         {
             InitializeComponent();
-            fc = f;
             ID = id;
             GetUser();
             name.Content = u.name + " " + u.surname;
@@ -50,12 +48,12 @@ namespace Evidence_server
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            fc.frame.Navigate(new UserList(fc));
+            BackEnd.frame.Navigate(new UserList());
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            fc.frame.Navigate(new NewUser(fc,u));
+            BackEnd.frame.Navigate(new NewUser(u));
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -64,7 +62,7 @@ namespace Evidence_server
             var request = new RestRequest(Method.GET);
             request.AddHeader("cache-control", "no-cache");
             IRestResponse response = client.Execute(request);
-            fc.frame.Navigate(new UserList(fc));
+            BackEnd.frame.Navigate(new UserList());
         }
     }
 }
