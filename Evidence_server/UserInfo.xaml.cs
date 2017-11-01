@@ -58,11 +58,15 @@ namespace Evidence_server
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            var client = new RestClient("https://student.sps-prosek.cz/~zdychst14/connection/delete.php?ID=" + ID);
-            var request = new RestRequest(Method.GET);
-            request.AddHeader("cache-control", "no-cache");
-            IRestResponse response = client.Execute(request);
-            BackEnd.frame.Navigate(new UserList());
+            var result = MessageBox.Show("Delete " + u.name + " ?","Deleting item",MessageBoxButton.YesNo);
+            if(result == MessageBoxResult.Yes)
+            {
+                var client = new RestClient("https://student.sps-prosek.cz/~zdychst14/connection/delete.php?ID=" + ID);
+                var request = new RestRequest(Method.GET);
+                request.AddHeader("cache-control", "no-cache");
+                IRestResponse response = client.Execute(request);
+                BackEnd.frame.Navigate(new UserList());
+            } 
         }
     }
 }
